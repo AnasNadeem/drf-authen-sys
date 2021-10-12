@@ -11,4 +11,12 @@ class RegisterSerializer(serializers.ModelSerializer):
     model = User
     fields = ('first_name','last_name','username', 'email', 'password')
 
-  
+
+class LoginSerializer(serializers.ModelSerializer):
+  password = serializers.CharField(max_length=155, min_length=5, write_only=True)
+
+  class Meta:
+    model = User
+    fields = ('email', 'username', 'password', 'token')
+
+    read_only_fields = ['token']
